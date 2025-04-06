@@ -11,7 +11,6 @@ export const authOptions = {
   pages: {
     signIn: "/",
   },
-  // Add this for static exports
   secret: process.env.NEXTAUTH_SECRET,
 };
 
