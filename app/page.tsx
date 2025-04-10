@@ -10,8 +10,16 @@ export default function Home() {
   const router = useRouter();
   
   useEffect(() => {
+
+    if (status === "loading") return;
+  
+    // Redirect to home if user is already logged in
+    // This is a workaround for the issue where the session is not available on the first render
+    // and the user is redirected to the login page
+
+
     if (session) {
-      router.push("/dashboard");
+      router.push("/");
     }
   }, [session, router]);
   
