@@ -19,7 +19,7 @@ export default function Home() {
 
 
     if (session) {
-      router.push("/");
+      router.push("/dashboard");
     }
   }, [session, router]);
   
