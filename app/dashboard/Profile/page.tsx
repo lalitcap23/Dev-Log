@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import { CircularProgress, LinearProgress } from "@mui/material";
 import { motion } from "framer-motion";
 import { FaUser, FaCoins, FaChartLine } from "react-icons/fa";
+import sidebar from "@/components/sidebar";
 
 interface ProfileData {
   name: string;
