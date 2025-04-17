@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/sonner';
 import { AuthProvider } from '@/components/auth-provider';
 
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
