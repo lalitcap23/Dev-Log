@@ -22,7 +22,7 @@ export default function Dashboard() {
   });
 
   const [newLog, setNewLog] = useState("");
-  const [timeMinutes, setTimeMinutes] = useState<number | "">(""); 
+  const [timeMinutes, setTimeMinutes] = useState<number | "">("");
   const [logs, setLogs] = useState<Log[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
@@ -179,231 +179,91 @@ export default function Dashboard() {
   }
 
   return (
-    <div className={`min-h-screen ${darkMode ? 'dark bg-gray-900' : 'bg-gray-50'}`}>
-      {/* Header */}
-      <header className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-800 dark:text-white">DevLogs</h1>
-          <div className="flex items-center gap-4">
-            <button 
-              onClick={toggleDarkMode}
-              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-              aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-            >
-              {darkMode ? (
-                <Sun size={20} className="text-yellow-400" />
-              ) : (
-                <Moon size={20} className="text-gray-700" />
-              )}
-            </button>
-            <div className="flex items-center gap-3">
-              {session?.user?.image ? (
-                <Image 
-                  src={session.user.image} 
-                  alt="Profile" 
-                  width={36} 
-                  height={36} 
-                  className="rounded-full ring-2 ring-gray-200 dark:ring-gray-700" 
-                />
-              ) : (
-                <div className="w-9 h-9 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
-                  <User size={18} className="text-blue-600 dark:text-blue-300" />
-                </div>
-              )}
-              <span className="font-medium text-gray-700 dark:text-gray-200">{session?.user?.name}</span>
-            </div>
-          </div>
+    <div className={`min-h-screen w-full bg-gradient-to-br from-[#0a1a17] via-[#112c26] to-[#183c35] text-white font-sans ${darkMode ? 'dark' : ''}`}> 
+      {/* NAVBAR */}
+      <header className="w-full px-8 py-6 flex justify-between items-center bg-transparent">
+        <div className="flex items-center gap-4">
+          <span className="text-2xl font-extrabold tracking-tight text-white">DevLogs</span>
+        </div>
+        <nav className="hidden md:flex gap-8 text-white/80 font-medium text-base">
+          <a href="#features" className="hover:text-white transition">Features</a>
+          <a href="#elements" className="hover:text-white transition">Elements</a>
+          <a href="#pricing" className="hover:text-white transition">Pricing</a>
+          <a href="#resources" className="hover:text-white transition">Resources</a>
+        </nav>
+        <div className="flex items-center gap-4">
+          <button 
+            onClick={toggleDarkMode}
+            className="p-2 rounded-full hover:bg-white/10 border border-white/10 transition-colors"
+            aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            {darkMode ? (
+              <Sun size={20} className="text-yellow-400" />
+            ) : (
+              <Moon size={20} className="text-white" />
+            )}
+          </button>
+          <button className="px-5 py-1.5 bg-white text-[#0a1a17] font-semibold rounded-lg shadow hover:bg-gray-200 transition">Log in</button>
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8 max-w-5xl">
-        {/* Daily Log Entry */}
-        <section className="bg-white dark:bg-gray-800 rounded-xl shadow-md mb-8 overflow-hidden">
-          <div className="bg-gradient-to-r from-blue-600 to-blue-500 p-6">
-            <h2 className="text-xl text-white font-semibold flex items-center">
-              <Calendar className="mr-2" size={20} />
-              What did you code today?
-            </h2>
-            <p className="text-blue-100 mt-1">
-              Record your development activities, challenges, and victories
-            </p>
-          </div>
-          
-          <form onSubmit={handleSubmit} className="p-6">
-            <textarea
-              value={newLog}
-              onChange={(e) => setNewLog(e.target.value)}
-              placeholder="Describe what you worked on today as a developer..."
-              className="w-full p-4 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all min-h-32 text-gray-700 dark:text-gray-200 dark:bg-gray-700"
-            />
-            
-            <div className="mt-4 flex flex-wrap items-center gap-4">
-              <div className="flex items-center">
-                <label htmlFor="timeMinutes" className="flex items-center mr-2 text-gray-700 dark:text-gray-200">
-                  <Timer size={18} className="mr-1 text-blue-500" />
-                  Time required:
-                </label>
+      {/* HERO SECTION */}
+      <section className="w-full flex flex-col items-center justify-center pt-16 pb-20">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-center mb-4 leading-tight">Design & Code together<br />powered by <span className="text-cyan-400">DevLogs</span>.</h1>
+        <p className="text-center text-lg text-white/80 max-w-2xl mb-8">Collaborate in real-time on your development journey. Seamlessly track, reflect, and boost productivity with daily logs, instant updates, and an elegant dashboard for developers.</p>
+        <div className="flex gap-4 mb-10">
+          <a href="#get-started" className="px-6 py-2 bg-white text-[#0a1a17] font-bold rounded-lg shadow hover:bg-gray-200 transition">Get Started</a>
+          <a href="#how-it-works" className="px-6 py-2 bg-white/10 text-white font-bold rounded-lg border border-white/20 hover:bg-white/20 transition">How it works</a>
+        </div>
+        <div className="flex flex-col md:flex-row gap-8 w-full max-w-5xl mt-6">
+          <div className="w-full">
+            <div className="rounded-xl bg-[#13241f]/80 border border-white/10 shadow-xl p-8">
+              <h2 className="text-2xl font-bold text-white mb-2">Built for designer–developer collaboration</h2>
+              <p className="text-white/80 mb-6">DevLogs bridges the gap between your daily workflow and personal growth. Log your progress, set your intentions, and reflect on your journey—all in one beautiful, high-tech dashboard.</p>
+              {/* TASKS TABLE */}
+              <div className="rounded-lg overflow-hidden bg-[#0c1816]/80 border border-white/10 mt-6">
+                <div className="flex items-center bg-[#162c28]/90 px-4 py-2 text-white/80 font-mono text-sm">
+                  <span className="w-2/3">Task</span>
+                  <span className="w-1/3">Time (min)</span>
+                </div>
+                {[0,1].map((i) => logs[i] && (
+                  <div key={logs[i].id} className="flex items-center border-t border-white/5 px-4 py-3 hover:bg-[#183c35]/70 transition">
+                    <span className="w-2/3 text-white/90 font-medium">{logs[i].content}</span>
+                    <span className="w-1/3 text-cyan-300 font-mono">{logs[i].timeMinutes}</span>
+                  </div>
+                ))}
+                {logs.length === 0 && (
+                  <div className="flex items-center px-4 py-6 text-white/40">No tasks yet.</div>
+                )}
+              </div>
+              {/* ADD TASK */}
+              <form onSubmit={handleSubmit} className="flex flex-col md:flex-row gap-3 mt-6">
                 <input
-                  id="timeMinutes"
+                  value={newLog}
+                  onChange={(e) => setNewLog(e.target.value)}
+                  placeholder="Add your dev task..."
+                  className="flex-1 px-4 py-3 rounded-lg border border-white/10 bg-[#112c26]/80 text-white focus:ring-2 focus:ring-cyan-400 focus:outline-none placeholder-white/40 shadow"
+                />
+                <input
                   type="number"
                   min="1"
                   value={timeMinutes}
                   onChange={(e) => setTimeMinutes(e.target.value ? Number(e.target.value) : "")}
                   placeholder="Minutes"
-                  className="border border-gray-200 dark:border-gray-700 rounded p-2 w-24 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200"
+                  className="w-32 px-4 py-3 rounded-lg border border-white/10 bg-[#112c26]/80 text-white focus:ring-2 focus:ring-cyan-400 focus:outline-none placeholder-white/40 shadow"
                 />
-                <span className="ml-2 text-gray-500 dark:text-gray-400">minutes</span>
-              </div>
-              
-              <div className="flex-grow"></div>
-              
-              <div className="flex items-center gap-4">
-                <p className="text-sm text-gray-500 dark:text-gray-400 hidden sm:block">
-                  Pro tip: Include technologies used and challenges overcome
-                </p>
                 <button
                   type="submit"
                   disabled={isSubmitting || !newLog.trim() || timeMinutes === ""}
-                  className="flex items-center bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-6 py-3 bg-cyan-400 hover:bg-cyan-500 text-[#0a1a17] font-bold rounded-lg shadow transition disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting ? (
-                    <span className="flex items-center">
-                      <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-white mr-2"></div>
-                      Saving...
-                    </span>
-                  ) : (
-                    <>
-                      <Save size={18} className="mr-2" />
-                      Save Log
-                    </>
-                  )}
+                  {isSubmitting ? "Saving..." : "Add Task"}
                 </button>
-              </div>
+              </form>
             </div>
-          </form>
-          
-          {showSuccessMessage && (
-            <div className="bg-green-50 dark:bg-green-900/30 border-l-4 border-green-500 p-4 m-6 mt-0">
-              <div className="flex">
-                <div className="flex-shrink-0">
-                  <svg className="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <div className="ml-3">
-                  <p className="text-sm text-green-700 dark:text-green-300">
-                    Log saved successfully!
-                  </p>
-                </div>
-              </div>
-            </div>
-          )}
-        </section>
-
-        {/* Previous Logs */}
-        <section className="bg-white dark:bg-gray-800 rounded-xl shadow-md">
-          <div className="px-6 py-5 border-b border-gray-200 dark:border-gray-700">
-            <h2 className="text-xl font-semibold text-gray-800 dark:text-white">Your DevLog History</h2>
-            <p className="text-gray-500 dark:text-gray-400 mt-1">Review and reflect on your developer journey</p>
           </div>
-
-          {logs.length === 0 ? (
-            <div className="py-12 px-6 text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-500 dark:text-blue-300 mb-4">
-                <Edit3 size={24} />
-              </div>
-              <h3 className="text-lg font-medium text-gray-800 dark:text-white mb-1">No logs yet</h3>
-              <p className="text-gray-500 dark:text-gray-400">Start your developer journal by adding today's log above</p>
-            </div>
-          ) : (
-            <div className="divide-y divide-gray-100 dark:divide-gray-700">
-              {logs.map((log) => (
-                <div key={log.id} className="px-6 py-5 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors">
-                  <div className="mb-2 flex flex-wrap justify-between items-center">
-                    <div className="flex items-center flex-wrap gap-2 mb-2 sm:mb-0">
-                      <div className="flex items-center">
-                        <Calendar size={16} className="text-blue-500 dark:text-blue-400 mr-2" />
-                        <span className="font-medium text-gray-700 dark:text-gray-200">{formatDate(log.createdAt)}</span>
-                      </div>
-                      <span className="mx-2 text-gray-400 dark:text-gray-600 hidden sm:inline">•</span>
-                      <div className="flex items-center">
-                        <Clock size={16} className="text-blue-500 dark:text-blue-400 mr-2" />
-                        <span className="text-gray-500 dark:text-gray-400">{formatTime(log.createdAt)}</span>
-                      </div>
-                      <span className="mx-2 text-gray-400 dark:text-gray-600 hidden sm:inline">•</span>
-                      <div className="flex items-center">
-                        <Timer size={16} className="text-blue-500 dark:text-blue-400 mr-2" />
-                        <span className="text-gray-500 dark:text-gray-400">{formatDuration(log.timeMinutes)}</span>
-                      </div>
-                    </div>
-                    
-                    {editingLogId !== log.id && (
-                      <button 
-                        onClick={() => startEditing(log)}
-                        className="text-gray-400 dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400"
-                      >
-                        <Edit3 size={16} />
-                      </button>
-                    )}
-                  </div>
-                  
-                  {editingLogId === log.id ? (
-                    <div>
-                      <textarea
-                        value={editContent}
-                        onChange={(e) => setEditContent(e.target.value)}
-                        className="w-full p-3 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all min-h-24 text-gray-700 dark:text-gray-200 dark:bg-gray-700 mb-2"
-                      />
-                      <div className="flex items-center mb-3">
-                        <label htmlFor={`edit-time-${log.id}`} className="flex items-center mr-2 text-gray-700 dark:text-gray-200">
-                          <Timer size={16} className="mr-1 text-blue-500 dark:text-blue-400" />
-                          Time taken:
-                        </label>
-                        <input
-                          id={`edit-time-${log.id}`}
-                          type="number"
-                          min="1"
-                          value={editTimeMinutes}
-                          onChange={(e) => setEditTimeMinutes(e.target.value ? Number(e.target.value) : "")}
-                          placeholder="Minutes"
-                          className="border border-gray-200 dark:border-gray-700 rounded p-2 w-24 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200"
-                        />
-                        <span className="ml-2 text-gray-500 dark:text-gray-400">minutes</span>
-                      </div>
-                      <div className="flex justify-end gap-2">
-                        <button 
-                          onClick={cancelEditing}
-                          className="flex items-center px-3 py-1 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
-                        >
-                          <X size={16} className="mr-1" />
-                          Cancel
-                        </button>
-                        <button 
-                          onClick={() => saveEdit(log.id)}
-                          className="flex items-center bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded"
-                          disabled={editTimeMinutes === ""}
-                        >
-                          <Save size={16} className="mr-1" />
-                          Save
-                        </button>
-                      </div>
-                    </div>
-                  ) : (
-                    <p className="text-gray-700 dark:text-gray-300 whitespace-pre-wrap">{log.content}</p>
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
-        </section>
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-12 py-6">
-        <div className="container mx-auto px-4 text-center text-gray-500 dark:text-gray-400 text-sm">
-          <p>DevLogs - Your private developer journal</p>
         </div>
-      </footer>
+      </section>
     </div>
   );
 }
