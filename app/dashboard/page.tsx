@@ -179,17 +179,16 @@ export default function Dashboard() {
   }
 
   return (
-    <div className={`min-h-screen w-full bg-gradient-to-br from-[#0a1a17] via-[#112c26] to-[#183c35] text-white font-sans ${darkMode ? 'dark' : ''}`}> 
+    <div className={`fixed inset-0 min-h-screen w-full bg-gradient-to-br from-[#0a1a17] via-[#112c26] to-[#183c35] text-white font-sans ${darkMode ? 'dark' : ''}`}>
       {/* NAVBAR */}
       <header className="w-full px-8 py-6 flex justify-between items-center bg-transparent">
         <div className="flex items-center gap-4">
           <span className="text-2xl font-extrabold tracking-tight text-white">DevLogs</span>
         </div>
-        <nav className="hidden md:flex gap-8 text-white/80 font-medium text-base">
-          <a href="#features" className="hover:text-white transition">Features</a>
-          <a href="#elements" className="hover:text-white transition">Elements</a>
-          <a href="#pricing" className="hover:text-white transition">Pricing</a>
-          <a href="#resources" className="hover:text-white transition">Resources</a>
+        <nav className="flex gap-8 text-white/80 font-medium text-base">
+          <span className="font-bold text-cyan-400">Stats</span>
+          <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">GitHub</a>
+          <a href="#faq" className="hover:text-white transition">FAQ</a>
         </nav>
         <div className="flex items-center gap-4">
           <button 
@@ -203,7 +202,22 @@ export default function Dashboard() {
               <Moon size={20} className="text-white" />
             )}
           </button>
-          <button className="px-5 py-1.5 bg-white text-[#0a1a17] font-semibold rounded-lg shadow hover:bg-gray-200 transition">Log in</button>
+          {session?.user?.image ? (
+            <Image
+              src={session.user.image}
+              alt="GitHub Profile"
+              width={38}
+              height={38}
+              className="rounded-full border-2 border-cyan-400 shadow-lg"
+              title={session.user.name || 'GitHub User'}
+            />
+          ) : (
+            <a href="/api/auth/signin" aria-label="Sign in with GitHub">
+              <svg height="38" width="38" viewBox="0 0 24 24" fill="currentColor" className="rounded-full bg-white p-1 border-2 border-cyan-400 shadow-lg text-[#18181b] hover:bg-gray-200 transition">
+                <path d="M12 0.297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.387 0.6 0.113 0.82-0.258 0.82-0.577 0-0.285-0.011-1.04-0.017-2.04-3.338 0.726-4.042-1.416-4.042-1.416-0.546-1.387-1.333-1.756-1.333-1.756-1.089-0.745 0.084-0.729 0.084-0.729 1.205 0.084 1.84 1.237 1.84 1.237 1.07 1.834 2.809 1.304 3.495 0.997 0.108-0.775 0.418-1.304 0.762-1.604-2.665-0.304-5.466-1.332-5.466-5.931 0-1.311 0.469-2.381 1.236-3.221-0.124-0.303-0.535-1.523 0.117-3.176 0 0 1.008-0.322 3.301 1.23 0.957-0.266 1.983-0.399 3.003-0.404 1.02 0.005 2.047 0.138 3.006 0.404 2.291-1.553 3.297-1.23 3.297-1.23 0.653 1.653 0.242 2.873 0.118 3.176 0.77 0.84 1.235 1.91 1.235 3.221 0 4.609-2.803 5.625-5.475 5.921 0.43 0.372 0.823 1.104 0.823 2.226 0 1.606-0.015 2.898-0.015 3.293 0 0.322 0.216 0.694 0.825 0.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+              </svg>
+            </a>
+          )}
         </div>
       </header>
 
